@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Любимому подкрутчику</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffebee;
+            color: #d32f2f;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden; /* Скрываем вылетающие за границы эмодзи */
+            position: relative;
+        }
+        .love-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 10; /* Чтобы контент был поверх эмодзи */
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+        .heart {
+            font-size: 3rem;
+            animation: heartbeat 1.5s infinite;
+            display: inline-block;
+            margin: 1rem 0;
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .nav-links {
+            margin-top: 2rem;
+        }
+        a {
+            color: #d32f2f;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Анимация эмодзи */
+        .emoji {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0;
+            animation: float-up 4s ease-in forwards;
+            z-index: 1;
+        }
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="love-container">
+        <h1>Я тебя люблю, любимый мой подкрутчик!</h1>
+        <div class="heart">♥</div>
+        <p>Спасибо, что ты есть — самый надёжный, смешной, тёплый и безумно талантливый человек в моей жизни.</p>
+        <p>Каждый день с тобой — как маленькое приключение, даже если мы просто лежим на диване. 😊</p>
+        
+        <div class="nav-links">
+            <a href="index.html">Вернуться на главную</a>
+        </div>
+    </div>
+
+    <script>
+        // Создаём летающие эмодзи
+        const emojis = ['❤️', '💪🏻', '🌀'];
+        const colors = ['#ff6b6b', '#d32f2f', '#ff8a65'];
+
+        function createEmoji() {
+            const emoji = document.createElement('div');
+            emoji.classList.add('emoji');
+            emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            emoji.style.left = Math.random() * 100 + 'vw';
+            emoji.style.animationDuration = 3 + Math.random() * 3 + 's';
+            emoji.style.fontSize = (1 + Math.random() * 2) + 'rem';
+            emoji.style.color = colors[Math.floor(Math.random() * colors.length)];
+            document.body.appendChild(emoji);
+
+            // Удаляем эмодзи после анимации
+            setTimeout(() => {
+                emoji.remove();
+            }, 4000);
+        }
+
+        // Запускаем генерацию каждые 300 мс
+        setInterval(createEmoji, 300);
+    </script>
+</body>
+</html>
